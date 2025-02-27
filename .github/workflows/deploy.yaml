@@ -31,15 +31,10 @@ jobs:
 
       - name: Debug Kubectl Configuration
         run: |
-          ls -la $HOME/.kube
-          cat $HOME/.kube/config
-          kubectl config view
-
-      - name: Debug Kubectl Configuration
-        run: |
-          ls -la $HOME/.kube
-          cat $HOME/.kube/config
-          kubectl config view
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > $HOME/.kube/config || echo "Decoding failed!"
+          ls -la $HOME/.kube || echo "Kube directory missing!"
+          cat $HOME/.kube/config || echo "Kube config file missing!"
+          kubectl config view || echo "Kubectl config not found!"
 
       - name: Deploy to Kubernetes
         run: |
