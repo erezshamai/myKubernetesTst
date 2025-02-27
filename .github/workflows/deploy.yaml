@@ -24,9 +24,22 @@ jobs:
 
       - name: Set up Kubectl
         run: |
+          mkdir -p $HOME/.kube
           echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > $HOME/.kube/config
           chmod 600 $HOME/.kube/config
           kubectl config use-context docker-desktop
+
+      - name: Debug Kubectl Configuration
+        run: |
+          ls -la $HOME/.kube
+          cat $HOME/.kube/config
+          kubectl config view
+
+      - name: Debug Kubectl Configuration
+        run: |
+          ls -la $HOME/.kube
+          cat $HOME/.kube/config
+          kubectl config view
 
       - name: Deploy to Kubernetes
         run: |
