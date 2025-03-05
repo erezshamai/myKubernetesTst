@@ -1,0 +1,10 @@
+replicaCount: 1
+
+server:
+  image: erezshamai707/hello-dart-server
+  tag: latest
+  port: 8080
+
+client:
+  image: erezshamai707/hello-dart-client
+  tag: latest

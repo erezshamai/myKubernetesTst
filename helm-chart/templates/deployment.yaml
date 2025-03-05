@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-dart-server
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hello-dart-server
+  template:
+    metadata:
+      labels:
+        app: hello-dart-server
+    spec:
+      containers:
+      - name: hello-dart-server
+        image: "{{ .Values.server.image }}:{{ .Values.server.tag }}"
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-dart-client
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hello-dart-client
+  template:
+    metadata:
+      labels:
+        app: hello-dart-client
+    spec:
+      
+      containers:
+      - name: hello-dart-client
+        image: "{{ .Values.client.image }}:{{ .Values.client.tag }}"

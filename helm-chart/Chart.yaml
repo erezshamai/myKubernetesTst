@@ -1,0 +1,5 @@
+apiVersion: v2
+name: hello-dart
+description: A Dart Hello World Server and Client
+version: 1.0.0
+appVersion: 1.0.0
